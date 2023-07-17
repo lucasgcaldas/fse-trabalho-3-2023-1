@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/CMakeFiles/bootloader
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/CMakeFiles/bootloader.rule
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/CMakeFiles/bootloader-complete.rule
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/lucas/Documents/UnB/9Semestre/FSE/fse-trabalho-3-2023-1/trabalho-3/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
