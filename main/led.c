@@ -5,7 +5,7 @@
 #include "freertos/task.h"
 #include "driver/ledc.h"
 #include "esp_err.h"
-#include "rotary.h"
+#include "encoder.h"
 
 
 #define LED_R 22
@@ -67,13 +67,13 @@ else {
   ledc_fade_func_install(0);
   while(true) {
     if(led == 'r') {
-      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, rotary_r, 1000, LEDC_FADE_WAIT_DONE);
+      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_r, 1000, LEDC_FADE_WAIT_DONE);
     }
     else if(led == 'g') {
-      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, rotary_g, 1000, LEDC_FADE_WAIT_DONE);
+      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_g, 1000, LEDC_FADE_WAIT_DONE);
     }
     else if(led == 'b') {
-      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, rotary_b, 1000, LEDC_FADE_WAIT_DONE);
+      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_b, 1000, LEDC_FADE_WAIT_DONE);
     }
   }
 }
