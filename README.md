@@ -1,53 +1,46 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-H2 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- |
+## Trabalho 3 de Fundamentos de Sistemas embarcados
 
-# Hello World Example
+### Requisitos
 
-Starts a FreeRTOS task to print "Hello World".
+- Placa ESP32
+- Sensores
+- Cabo USB para conectar a placa ao computador
+- Ambiente de desenvolvimento configurado com a ESP-IDF e as ferramentas necessárias (toolchain)
+- Visual Studio Code instalado com a extensão ESP-IDF Explorer
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+### Compilar e Flash
 
-## How to use example
+1. Clone o repositório do projeto para o seu computador.
 
-Follow detailed instructions provided specifically for this example.
+2. Abra o Visual Studio Code e navegue até a pasta do projeto clonado.
 
-Select the instructions depending on Espressif chip installed on your development board:
+3. Verifique se a extensão ESP-IDF Explorer está instalada e habilitada no VSCode.
 
-- [ESP32 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html)
-- [ESP32-S2 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html)
+4. Vá em SDK config e altere em configuração do wifi CONFIG_ESP_WIFI_SSID para o nome da sua rede e CONFIG_ESP_WIFI_PASSWORD para a senha da sua rede 
 
+5. No VSCode, clique no ícone do ESP-IDF Explorer na barra lateral (logotipo da Espressif).
 
-## Example folder contents
+6. No ESP-IDF Explorer, clique na tarefa "Build" (ícone de martelo) para compilar o projeto.
 
-The project **hello_world** contains one source file in C language [hello_world_main.c](main/hello_world_main.c). The file is located in folder [main](main).
+7. Aguarde o processo de compilação ser concluído e verifique se não houve erros.
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt` files that provide set of directives and instructions describing the project's source files and targets (executable, library, or both).
+8. Conecte a placa ESP32 ou ESP8266 ao computador usando o cabo USB.
 
-Below is short explanation of remaining files in the project folder.
+9. No ESP-IDF Explorer, clique na tarefa "Flash" (ícone de seta para a direita) para fazer o flash do firmware na placa.
 
-```
-├── CMakeLists.txt
-├── pytest_hello_world.py      Python script used for automated testing
-├── main
-│   ├── CMakeLists.txt
-│   └── hello_world_main.c
-└── README.md                  This is the file you are currently reading
-```
+10. Aguarde o processo de flash ser concluído e verifique se não houve erros.
+ 
 
-For more information on structure and contents of ESP-IDF projects, please refer to Section [Build System](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html) of the ESP-IDF Programming Guide.
+### Executar o Projeto
 
-## Troubleshooting
+Agora que o firmware foi compilado e gravado na placa, você pode executar o projeto na placa ESP32.
 
-* Program upload failure
+### Sensores Utilizados
 
-    * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
-    * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
+1. Sensor de medição de temperatura
+2. Display de 8 segmentos
+3. Sensor de proximidade
+4. Buzzer
+5. Led RGB
+6. Encoder
 
-## Technical support and feedback
-
-Please use the following feedback channels:
-
-* For technical queries, go to the [esp32.com](https://esp32.com/) forum
-* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-idf/issues)
-
-We will get back to you as soon as possible.
