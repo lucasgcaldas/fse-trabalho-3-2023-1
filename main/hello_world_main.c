@@ -45,7 +45,6 @@ const int segments[] = {
     SEGMENT_G_PIN
 };
 
-
 SemaphoreHandle_t conexaoWifiSemaphore;
 SemaphoreHandle_t conexaoMQTTSemaphore;
 
@@ -56,24 +55,6 @@ void conectadoWifi(void * params)
     if(xSemaphoreTake(conexaoWifiSemaphore, portMAX_DELAY))
     {
       mqtt_start();
-    }
-  }
-}
-
-void trataComunicacaoComServidor(void * params)
-{
-  char mensagem[50];
-  if(xSemaphoreTake(conexaoMQTTSemaphore, portMAX_DELAY)) {
-    while(true) {
-      sprintf(mensagem, "{\"potencia_vermelho\": %d}", encoder_r);
-      mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
-
-      sprintf(mensagem, "{\"potencia_verde\": %d}", encoder_g);
-      mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
-
-      sprintf(mensagem, "{\"potencia_azul\": %d}", encoder_b);
-      mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
-      vTaskDelay(3000 / portTICK_PERIOD_MS);
     }
   }
 }
@@ -108,6 +89,46 @@ void displayDigit(uint8_t digit) {
     }
 }
 
+int getTemperature() {
+    return analogRead(TEMP_SENSOR);
+}
+
+void trataComunicacaoComServidor(void * params)
+{
+  char mensagem[50];
+  if(xSemaphoreTake(conexaoMQTTSemaphore, portMAX_DELAY)) {
+    int i = 0;
+    while(true) {
+      
+      if (i == 10) 
+        i = 0;
+
+      sprintf(mensagem, "{\"potencia_vermelho\": %d}", encoder_r);
+      mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
+
+      sprintf(mensagem, "{\"potencia_verde\": %d}", encoder_g);
+      mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
+
+      sprintf(mensagem, "{\"potencia_azul\": %d}", encoder_b);
+      mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
+
+      float temperatura = getTemperature() / 100.0;
+      sprintf(mensagem, "{\"temperatura\": %f}", temperatura);
+      mqtt_envia_mensagem("v1/devices/me/telemetry", mensagem);
+
+      displayDigit(i % 10);
+      sprintf(mensagem, "{\"numero\": %d}", i);
+      mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
+      i++;
+
+      sprintf(mensagem, "{\"proximidade\": %d}", proximidade);
+      mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
+
+      vTaskDelay(3000 / portTICK_PERIOD_MS);
+    }
+  }
+}
+
 void app_main(void)
 { 
     // Configura os pinos dos segmentos como saída
@@ -116,32 +137,17 @@ void app_main(void)
         gpio_set_direction(segments[i], GPIO_MODE_OUTPUT);
     }
 
-    while (true)
-    {
-        for (int i = 0; i < 10; i++) {
-            displayDigit(i % 10);
-            vTaskDelay(pdMS_TO_TICKS(2000));  // Aguardar 1 segundo
-        }
-    }
-
-    adc_init(ADC_UNIT_1);
-    adc_config_pin(TEMP_SENSOR);
-
-    while (true)
-    {
-      int temperatura = analogRead(TEMP_SENSOR);
-
-      printf("Temperatura: %d\n", temperatura);
-      vTaskDelay(100 / portTICK_PERIOD_MS);
-    }
-
-
+    // Sensor de proximidade
     esp_rom_gpio_pad_select_gpio(TOUCH_SENSOR);
     gpio_set_direction(TOUCH_SENSOR, GPIO_MODE_INPUT);
 
+    // Buzzer
     esp_rom_gpio_pad_select_gpio(SOUND_SENSOR);
     gpio_set_direction(SOUND_SENSOR, GPIO_MODE_OUTPUT);
-    // gpio_set_level(SOUND_SENSOR, 1);
+
+    // Temperatura
+    adc_init(ADC_UNIT_1);
+    adc_config_pin(TEMP_SENSOR);
 
     inicia_valores();
 

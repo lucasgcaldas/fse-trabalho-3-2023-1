@@ -12,9 +12,9 @@
 
 int counter = 0;
 
-int encoder_r = 0;
-int encoder_g = 0;
-int encoder_b = 0;
+int encoder_r = 255;
+int encoder_g = 255;
+int encoder_b = 255;
 
 void inicia_valores() {
     ESP_ERROR_CHECK(nvs_flash_init());
@@ -96,35 +96,46 @@ void control_encoder_decoder() {
   while (true) {
     int levelA = gpio_get_level(ENCODER_PIN_A);
     int levelB = gpio_get_level(ENCODER_PIN_B);
+    // printf("activeMax %d\n", activeMax);
+    // printf("activeMin %d\n", activeMin);
+    // printf("activeR %d\n", activeR);
+    // printf("activeG %d\n", activeG);
+    // printf("activeB %d\n", activeB);
+    // printf("level A %d\n", levelA);
+    // printf("last A %d\n", lastA);
+    // printf("level B %d\n", levelB);
+    // printf("encoder_r %d\n", encoder_r);
+    // printf("encoder_g %d\n", encoder_g);
+    // printf("encoder_b %d\n", encoder_b);
 
-    if(activeMax == 't'){
-      encoder_r = encoder_g = encoder_b = 255;
+    if(activeMax == 1){
+      encoder_r = encoder_g = encoder_b = 1;
     }
-    else if (activeMin == 't'){
-      encoder_r = encoder_g = encoder_b = 0;
+    else if (activeMin == 1){
+      encoder_r = encoder_g = encoder_b = 255;
     }
     else {
       if(levelA != lastA){
         if(levelA == levelB){
-          if(activeR == 't' && encoder_r < 255){
-            encoder_r++;
+          if(activeR == 1 && encoder_r  > 0){
+            encoder_r--;
           }
-          if(activeG == 't' && encoder_g < 255){
-            encoder_g++;
+          if(activeG == 1 && encoder_g  > 0){
+            encoder_g--;
           }
-          if(activeB == 't' && encoder_b < 255){
-            encoder_b++;
+          if(activeB == 1 && encoder_b  > 0){
+            encoder_b--;
           }
         }
         else {
-          if(activeR == 't' && encoder_r  > 0){
-            encoder_r--;
+          if(activeR == 1 && encoder_r < 255){
+            encoder_r++;
           }
-          if(activeG == 't' && encoder_g  > 0){
-            encoder_g--;
+          if(activeG == 1 && encoder_g < 255){
+            encoder_g++;
           }
-          if(activeB == 't' && encoder_b  > 0){
-            encoder_b--;
+          if(activeB == 1 && encoder_b < 255){
+            encoder_b++;
           }
         }
       }

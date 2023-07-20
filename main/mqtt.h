@@ -1,11 +1,11 @@
 #ifndef MQTT_H
 #define MQTT_H
 
-extern char activeR;
-extern char activeG;
-extern char activeB;
-extern char activeMax;
-extern char activeMin;
+extern int activeR;
+extern int activeG;
+extern int activeB;
+extern int activeMax;
+extern int activeMin;
 
 void mqtt_start();
 

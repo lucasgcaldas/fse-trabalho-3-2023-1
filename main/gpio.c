@@ -10,7 +10,7 @@
 #define TOUCH_SENSOR 18
 #define SOUND_SENSOR 19
 
-int estadoSensor = 0;
+int proximidade = 0;
 
 void touchSensor()
 {
@@ -19,9 +19,11 @@ void touchSensor()
         if (gpio_get_level(TOUCH_SENSOR) == 1)
         {
             gpio_set_level(SOUND_SENSOR, 0);
+            proximidade = 0;
         }
         else {
             gpio_set_level(SOUND_SENSOR, 1);
+            proximidade = 1;
         }
 
         vTaskDelay(100 / portTICK_PERIOD_MS);

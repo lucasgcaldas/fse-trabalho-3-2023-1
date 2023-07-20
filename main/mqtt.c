@@ -26,11 +26,11 @@
 extern SemaphoreHandle_t conexaoMQTTSemaphore;
 esp_mqtt_client_handle_t client;
 
-char activeR = 'f';
-char activeG = 'f';
-char activeB = 'f';
-char activeMax = 'f';
-char activeMin = 'f';
+int activeR = 0;
+int activeG = 0;
+int activeB = 0;
+int activeMax = 0;
+int activeMin = 0;
 
 static void log_error_if_nonzero(const char *message, int error_code)
 {
@@ -94,7 +94,7 @@ void mqtt_start()
 {
     esp_mqtt_client_config_t mqtt_config = {
         .broker.address.uri = "mqtt://164.41.98.25",
-        .credentials.username = "RMg8wlVGDTmt8GwvofNN"
+        .credentials.username = "asq717MLLGDgfI36Ry4d"
     };
     client = esp_mqtt_client_init(&mqtt_config);
     esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, mqtt_event_handler, NULL);
@@ -125,33 +125,33 @@ void handle_data(char *data){
     cJSON* valueB = cJSON_GetObjectItem(params, "ledb");
 
     if(cJSON_IsTrue(valueMax)){
-        activeMax = 't';
+        activeMax = 1;
     }
     else {
-        activeMax = 'f';
+        activeMax = 0;
     }
 
     if(cJSON_IsTrue(valueMin)){
-        activeMin = 't';
+        activeMin = 1;
     }
     else {
-        activeMin = 'f';
+        activeMin = 0;
     }
 
     if(cJSON_IsTrue(desmarcarLeds)){
-        activeR = 'f';
-        activeG = 'f';
-        activeB = 'f';
+        activeR = 0;
+        activeG = 0;
+        activeB = 0;
     }
 
     if(cJSON_IsTrue(valueR)){
-        activeR = 't';
+        activeR = 1;
     }
     if(cJSON_IsTrue(valueG)){
-        activeG = 't';
+        activeG = 1;
     }
     if(cJSON_IsTrue(valueB)){
-        activeB = 't';
+        activeB = 1;
     }
 
     cJSON_Delete(json);
