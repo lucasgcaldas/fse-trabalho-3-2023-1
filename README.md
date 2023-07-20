@@ -1,5 +1,9 @@
 ## Trabalho 3 de Fundamentos de Sistemas embarcados
 
+Alunos:
+Lucas Gomes Caldas - 212005426
+Victor Souza Dantas Martins Lima - 190044403
+
 ### Requisitos
 
 - Placa ESP32
@@ -43,4 +47,10 @@ Agora que o firmware foi compilado e gravado na placa, você pode executar o pro
 4. Buzzer
 5. Led RGB
 6. Encoder
+
+### Link para o DashBoard
+
+http://164.41.98.25:443/dashboards/b3558200-25c3-11ee-95da-bd0125f1f921
+
+Acesse esse link para testar o projeto com o dashboard criado
 
