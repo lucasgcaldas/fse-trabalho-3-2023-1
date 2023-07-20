@@ -339,8 +339,8 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 # Configuração do Wifi
 #
-CONFIG_ESP_WIFI_SSID="2G_LUCAS"
-CONFIG_ESP_WIFI_PASSWORD="gomes504"
+CONFIG_ESP_WIFI_SSID="lappis"
+CONFIG_ESP_WIFI_PASSWORD="<%=lappiscontainer=%>"
 CONFIG_ESP_MAXIMUM_RETRY=5
 # end of Configuração do Wifi
 

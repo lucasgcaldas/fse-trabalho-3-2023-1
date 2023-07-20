@@ -14,6 +14,8 @@ Victor Souza Dantas Martins Lima - 190044403
 
 ### Compilar e Flash
 
+Obs: $ sudo chmod 777 /dev/ttyUSB0
+
 1. Clone o repositório do projeto para o seu computador.
 
 2. Abra o Visual Studio Code e navegue até a pasta do projeto clonado.

@@ -97,11 +97,7 @@ void trataComunicacaoComServidor(void * params)
 {
   char mensagem[50];
   if(xSemaphoreTake(conexaoMQTTSemaphore, portMAX_DELAY)) {
-    int i = 0;
     while(true) {
-      
-      if (i == 10) 
-        i = 0;
 
       sprintf(mensagem, "{\"potencia_vermelho\": %d}", encoder_r);
       mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
@@ -116,10 +112,9 @@ void trataComunicacaoComServidor(void * params)
       sprintf(mensagem, "{\"temperatura\": %f}", temperatura);
       mqtt_envia_mensagem("v1/devices/me/telemetry", mensagem);
 
-      displayDigit(i % 10);
-      sprintf(mensagem, "{\"numero\": %d}", i);
+      displayDigit((encoder_r / 25) % 10);
+      sprintf(mensagem, "{\"numero\": %d}", (encoder_r / 25));
       mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);
-      i++;
 
       sprintf(mensagem, "{\"proximidade\": %d}", proximidade);
       mqtt_envia_mensagem("v1/devices/me/attributes", mensagem);

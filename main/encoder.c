@@ -144,6 +144,7 @@ void control_encoder_decoder() {
         }
       }
     }
+
     counter++;
 
     if(counter % 400 == 0) {

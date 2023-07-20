@@ -2,13 +2,13 @@ menu "Configuração do Wifi"
 
     config ESP_WIFI_SSID 
         string "WiFi SSID"
-        default "2G_LUCAS"
+        default "lapis"
         help
             Nome da rede Wifi.
 
     config ESP_WIFI_PASSWORD
         string "Senha do Wifi"
-        default "gomes504"
+        default "<%=lappiscontainer=%>"
         help
             Senha do WiFi (WPA or WPA2).
 
@@ -22,7 +22,7 @@ endmenu
 menu "Outros"
     config ESP_WIFI_PASSWORD
         string "Senha do Wifi"
-        default "gomes504"
+        default "<%=lappiscontainer=%>"
         help
             Senha do WiFi (WPA or WPA2).
 endmenu
