@@ -42,6 +42,10 @@ void inicia_valores() {
             encoder_r = (int) valorR;
             encoder_g = (int) valorG;
             encoder_b = (int) valorB;
+
+            // encoder_r = 255;
+            // encoder_g = 255;
+            // encoder_b = 255;
             break;
         case ESP_ERR_NOT_FOUND:
             ESP_LOGE("NVS", "Valor não encontrado");
@@ -109,7 +113,7 @@ void control_encoder_decoder() {
     // printf("encoder_b %d\n", encoder_b);
 
     if(activeMax == 1){
-      encoder_r = encoder_g = encoder_b = 1;
+      encoder_r = encoder_g = encoder_b = 0;
     }
     else if (activeMin == 1){
       encoder_r = encoder_g = encoder_b = 255;
@@ -117,25 +121,25 @@ void control_encoder_decoder() {
     else {
       if(levelA != lastA){
         if(levelA == levelB){
-          if(activeR == 1 && encoder_r  > 0){
-            encoder_r--;
+          if(activeR == 1 && encoder_r  > 5){
+            encoder_r -= 25;
           }
-          if(activeG == 1 && encoder_g  > 0){
-            encoder_g--;
+          if(activeG == 1 && encoder_g  > 5){
+            encoder_g -= 25;
           }
-          if(activeB == 1 && encoder_b  > 0){
-            encoder_b--;
+          if(activeB == 1 && encoder_b  > 5){
+            encoder_b -= 25;
           }
         }
         else {
           if(activeR == 1 && encoder_r < 255){
-            encoder_r++;
+            encoder_r += 25;
           }
           if(activeG == 1 && encoder_g < 255){
-            encoder_g++;
+            encoder_g += 25;
           }
           if(activeB == 1 && encoder_b < 255){
-            encoder_b++;
+            encoder_b += 25;
           }
         }
       }

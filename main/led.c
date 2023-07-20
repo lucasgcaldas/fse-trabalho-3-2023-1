@@ -33,11 +33,11 @@ if(led == 'r'){
 }
 else if(led == 'g'){
     led_channel = LED_G;
-    other_channels = 2;
+    other_channels = 1;
 }
 else if(led == 'b'){
     led_channel = LED_B;
-    other_channels = 3;
+    other_channels = 2;
 }
 else {
     return;
@@ -64,16 +64,25 @@ else {
   };
   ledc_channel_config(&channel_config_r);
 
-  ledc_fade_func_install(0);
+  // ledc_fade_func_install(0);
   while(true) {
+    // printf("encoder_r %d\n", encoder_r);
+    // printf("encoder_g %d\n", encoder_g);
+    // printf("encoder_b %d\n", encoder_b);
     if(led == 'r') {
-      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_r, 1000, LEDC_FADE_WAIT_DONE);
+      // ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_r, 1000, LEDC_FADE_WAIT_DONE);
+      ledc_set_duty(LEDC_LOW_SPEED_MODE, other_channels, encoder_r);
+      ledc_update_duty(LEDC_LOW_SPEED_MODE, other_channels);
     }
     else if(led == 'g') {
-      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_g, 1000, LEDC_FADE_WAIT_DONE);
+      // ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_g, 1000, LEDC_FADE_WAIT_DONE);
+      ledc_set_duty(LEDC_LOW_SPEED_MODE, other_channels, encoder_g);
+      ledc_update_duty(LEDC_LOW_SPEED_MODE, other_channels);
     }
     else if(led == 'b') {
-      ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_b, 1000, LEDC_FADE_WAIT_DONE);
+      // ledc_set_fade_time_and_start(LEDC_LOW_SPEED_MODE, other_channels, encoder_b, 1000, LEDC_FADE_WAIT_DONE);
+      ledc_set_duty(LEDC_LOW_SPEED_MODE, other_channels, encoder_b);
+      ledc_update_duty(LEDC_LOW_SPEED_MODE, other_channels);
     }
   }
 }
