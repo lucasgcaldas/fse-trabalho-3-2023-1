@@ -44,7 +44,7 @@ Agora que o firmware foi compilado e gravado na placa, você pode executar o pro
 ### Sensores Utilizados
 
 1. Sensor de medição de temperatura
-2. Display de 8 segmentos
+2. Display de 7 segmentos
 3. Sensor de proximidade
 4. Buzzer
 5. Led RGB
